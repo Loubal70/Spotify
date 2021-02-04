@@ -9,7 +9,7 @@
 
 ## ✨ Demo
 
-`readme-md-generator` is able to read your environment (package.json, git config...) to suggest you default answers during the `README.md` creation process:
+`SpotifyLike` vous permet d'écouter et de publier votre propre musique disponible pour tous ! Suivez vos artistes préférés ou devenez en un !
 
 <p align="center">
   <img width="700" align="center" src="https://user-images.githubusercontent.com/9840435/60266022-72a82400-98e7-11e9-9958-f9004c2f97e1.gif" alt="demo"/>

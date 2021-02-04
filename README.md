@@ -34,9 +34,8 @@ Devenez un contributeur à mon travail en me faisant un don simplement par paypa
 
 ## 📝 License
 
-Copyright © 2019 [Franck Abgrall](https://github.com/kefranabg).<br />
-This project is [MIT](https://github.com/kefranabg/readme-md-generator/blob/master/LICENSE) licensed.
+Copyright © 2021 [Loubal70](https://github.com/Loubal70).<br />
 
 ---
 
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+_❤️ Pour toute utilisation de ce code open-source, vous êtes priés de citer le nom des deux développeurs de ce projet

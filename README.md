@@ -26,8 +26,8 @@ Liste bientôt disponible
 ## Code Contributors
 
 Voici les développeurs qui ont contribués à développer ce projet :
-<a href="https://github.com/kefranabg/readme-md-generator/graphs/contributors">
-  <img src="https://avatars.githubusercontent.com/u/63310494?s=90" style="border-radius:50%; display:block;">
+<a href="https://github.com/kefranabg/readme-md-generator/graphs/contributors" style="border-radius:50%; display:block;">
+  <img src="https://avatars.githubusercontent.com/u/63310494?s=90" >
 </a>
 
 ## 🤝 Financial Contributors

@@ -5,7 +5,7 @@
   </a>
 </p>
 
-> CLI that generates beautiful README.md files.<br /> `readme-md-generator` will suggest you default answers by reading your `package.json` and `git` configuration.
+> Ce projet a été créé dans le cadre de ma deuxième année d'étude en MMI.<br />Nous avons utilisé le framework `Laravel` dans le but d'apprendre à l'utiliser de zéro.
 
 ## ✨ Demo
 

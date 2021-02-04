@@ -29,7 +29,7 @@ Devenez un contributeur à mon travail en me faisant un don simplement par paypa
 
 ## Auteur :
 
-👤 **Loubal70**
+👤 **Loubal70** <br>
 👤 **Zydril**
 
 ## 📝 License

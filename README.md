@@ -25,19 +25,13 @@ Liste bientôt disponible
 
 ## Code Contributors
 
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="https://github.com/kefranabg/readme-md-generator/graphs/contributors"><img src="https://opencollective.com/readme-md-generator/contributors.svg?width=890&button=false" /></a>
+Voici les développeurs qui ont contribués à développer ce projet :
+<a href="https://github.com/kefranabg/readme-md-generator/graphs/contributors">
+  <img src="https://avatars.githubusercontent.com/u/63310494?s=96&v=4?width=890&button=false" /></a>
 
 ## 🤝 Financial Contributors
 
 Devenez un contributeur à mon travail en me faisant un don simplement par paypal : [[Paypal](https://paypal.me/pools/c/8wDhpesCNY)]
-
-
-### Développeur
-
-Voici les développeurs qui ont contribués à développer ce projet :
-<a href="https://opencollective.com/readme-md-generator/organization/0/website"><img src="https://opencollective.com/readme-md-generator/organization/0/avatar.svg"></a>
-<a href="https://opencollective.com/readme-md-generator/organization/1/website"><img src="https://opencollective.com/readme-md-generator/organization/1/avatar.svg"></a>
 
 ## Author
 
@@ -46,13 +40,6 @@ Voici les développeurs qui ont contribués à développer ce projet :
 - Twitter: [@FranckAbgrall](https://twitter.com/FranckAbgrall)
 - Github: [@kefranabg](https://github.com/kefranabg)
 
-## Show your support
-
-Please ⭐️ this repository if this project helped you!
-
-<a href="https://www.patreon.com/FranckAbgrall">
-  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
-</a>
 
 ## 📝 License
 

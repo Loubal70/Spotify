@@ -37,5 +37,4 @@ Devenez un contributeur à mon travail en me faisant un don simplement par paypa
 Copyright © 2021 [Loubal70](https://github.com/Loubal70).<br />
 
 ---
-
-* ❤️Pour toute utilisation de ce code open-source, vous êtes priés de citer le nom des deux développeurs de ce projet
+_ ❤️Pour toute utilisation de ce code open-source, vous êtes priés de citer le nom des deux développeurs de ce projet

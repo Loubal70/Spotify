@@ -1,8 +1,7 @@
 <h1 align="center">Bienvenue sur notre SpotifyLike 👋</h1>
 <p align="center">
-  <img src="https://img.shields.io/npm/v/readme-md-generator.svg?orange=blue" />
   <a href="https://twitter.com/loubal70_work">
-    <img alt="Twitter: FranckAbgrall" src="https://img.shields.io/twitter/follow/FranckAbgrall.svg?style=social" target="_blank" />
+    <img alt="Twitter: Loubal70_work" src="https://img.shields.io/twitter/follow/loubal70_work?style=social" target="_blank" />
   </a>
 </p>
 

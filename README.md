@@ -38,4 +38,4 @@ Copyright © 2021 [Loubal70](https://github.com/Loubal70).<br />
 
 ---
 
-_ Pour toute utilisation de ce code open-source, vous êtes priés de citer le nom des deux développeurs de ce projet
+*❤️Pour toute utilisation de ce code open-source, vous êtes priés de citer le nom des deux développeurs de ce projet

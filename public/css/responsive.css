@@ -1,0 +1,13 @@
+@media screen and (max-width: 992px){
+  h1.header_title {
+    font-size: 40px;
+    line-height: normal;
+    margin-bottom: 2rem;
+  }
+  h2{
+    font-size: 20px;
+  }
+  img.homepage{
+    display: none;
+  }
+}

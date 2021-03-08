@@ -27,7 +27,7 @@ Route::get('/article/{id}', [FirstController::class, 'article'])->where('id','[0
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // MiddleWare : si tu n'arrives pas passer la porte connexion (condition d'accès)
-Route::get('/songs/create', [FirstController::class, "create"])->middleware('auth');
+Route::get('/songs/create', [FirstController::class, "create"])->middleware('auth')->name('songs.create');
 Route::post('/songs', [FirstController::class, "store"])->middleware('auth');;
 
 Route::get("/users/{id}", [FirstController::class, "user"])->where('id','[0-9]+');
@@ -35,3 +35,4 @@ Route::get('/changeLike/{id}', [FirstController::class, "changeLike"])->middlewa
 Auth::routes();
 
 Route::get('/search/{search}', [FirstController::class, "search"]);
+Route::get('/test', [FirstController::class, "test"]);

@@ -1,3 +1,34 @@
+// Recherche personne / musique
+  // $("#search").submit(function(e) {
+  //   e.preventDefault();
+  //   if ($.support.pjax) {
+  //     $.pjax({url})
+  //   }
+  //   let s = e.target.elements[0].value;
+  //   window.location.href = '/search/'+ s;
+  // })
+$('#search').submit(function (e) {
+    e.preventDefault();
+    if ($.support.pjax)
+        $.pjax({url: "/search/" + e.target.elements[0].value, container: '#pjax-container'});
+    else
+        window.location.href = "/search/" + e.target.elements[0].value;
+  });
+
+$(document).pjax('a:not(.song)', '#pjax-container');
+$(document).on('submit', 'form[data-pjax]', function(event) {
+  $.pjax.submit(event, '#pjax-container')
+})
+
+// Like animation
+$(".heart").on('click touchstart', function(){
+  $(this).toggleClass('is_animating');
+});
+
+$(".heart").on('animationend', function(){
+  $(this).toggleClass('animationend');
+});
+
 
 var music = document.getElementById("music");
 var playButton = document.getElementById("play");
@@ -51,7 +82,7 @@ function timeUpdate() {
 
 
 $(document).ready(function (){
-  $("a.song").click(function (e){
+  $("#pjax-container").on("click", "a.song", function (e){
     e.preventDefault();
     var audio = $("#music")[0];
     audio.src = $(this).attr('data-file');
@@ -61,16 +92,10 @@ $(document).ready(function (){
 
 			// Set Titre chanson
 			document.getElementById("title").innerHTML = $(this).attr('data-titre');
+
+      // Set Img Chanson
+      $('.imgBx').css("background-image", "url(" + $(this).attr('data-img') + ")");
   });
-
-
-  // Recherche personne / musique
-  $("#search").submit(function(e) {
-    e.preventDefault();
-    let s = e.target.elements[0].value;
-    window.location.href = '/search/'+ s;
-  })
-
 
 });
 

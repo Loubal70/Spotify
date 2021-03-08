@@ -70,7 +70,8 @@ class FirstController extends Controller
 
     $request->validate([ // Faire une validation du fichier uploadé, si bon upload, sinon retour vers le formulaire
       'title' => 'required|min:4|max:255',
-      'song' => 'required|file|mimes:mp3,ogg',
+      'song' => 'required|file|mimes:mp3,ogg,mp4a,m4a,mpga,webm',
+      "image" => 'required|file'
     ]);
 
     $song = new Song();
@@ -80,15 +81,20 @@ class FirstController extends Controller
     $song->url = "/uploads/".Auth::id()."/".$name;
     $song->votes = 0;
     $song->user_id = Auth::id();
+
+    $name_img = $request->file('image')->hashName();
+    $request->file('image')->move("uploads/".Auth::id(), $name_img);
+    $song->image = "/uploads/".Auth::id()."/".$name_img;
+
+
     $song->save();
 
-    return redirect("/");
+    return redirect("/")->with('toastr', ["status"=>"success", "message" => "Chanson chargée avec succès"]);
   }
 
-
   public function changeLike($id){
-    Auth::user()->ILikeThem()->toggle($id); // Si la ligne existe : je l'enlève sinon je l'ajoute
-    return back();
+    Auth::user()->ILikeThem()->toggle($id);
+    return back()->with('toastr', ["status"=>"success", "message"=> "Modification suivi"]);
   }
 
 }

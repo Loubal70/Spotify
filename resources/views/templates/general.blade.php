@@ -14,19 +14,21 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/magnific-popup.css" />
+    <link rel="stylesheet" href="/css/toastr.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/master.css">
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/responsive.css">
     <!--[if lt IE 9]>
     	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     	<![endif]-->
-
   </head>
   <body>
     <div id="preloder">
     <div class="loader"></div>
     </div>
+
 
     {{-- <header class="header-section">
       <div class="container">
@@ -115,9 +117,8 @@
                   @csrf
               </form>
           </div>
-          <div class="btn btn-primary">
-            Drive in &#8594;
-          </div>
+
+          <a href="{{ route('songs.create') }}" class="btn btn-primary">Ajouter &#8594;</a>
             @endguest
           </div>
 
@@ -131,24 +132,83 @@
         <input type="text" name="search" placeholder="Recherche ta chanson"> <input type="submit" value="Rechercher">
       </form>
 
-    @if (Request::is('/'))
-      @guest
-        <div class="col-12 text-center">
-          <h1 class="header_title">Une nouvelle <br>expérience <span>auditive</span></h1>
-          <h2>Découvrez une nouvelle interface pour votre service de <br>streaming préféré. Inscrivez vous pour en savoir plus !</h2>
-          <a href="{{ route('register') }}" class="btn btn-secondary mt-3">S'inscrire &#8594;</a>
 
-          <img class="homepage" src="/img/homepage.svg" alt="HomePage">
-        </div>
-      @endguest
-    @endif
       {{-- <h2 class="section-title mb-5">Écoutons de la musique ensemble</h2>
 
        --}}
 
-      @yield('contenu')
+      <div id="pjax-container" class="my-3">
+        @if (Session::has('toastr'))
+           <script type="text/javascript">
+            toastr.{{Session::get('toastr')['status']}}('{{Session::get('toastr')['message']}}')
+          </script>
+        @endif
+
+        @yield('contenu')
+      </div>
+
 
     </div>
+    @auth
+      <footer class="container-fluid mt-5" id="audio">
+        <div class="row align-items-center">
+
+          {{-- Left Component --}}
+
+          <div class="col-lg-3">
+            <div class="imgBx">
+              <div class="heart"></div>
+            </div>
+            <div class="text">
+              <h6>Musique en cours :</h6>
+              <span id="title"> </span>
+            </div>
+          </div>
+
+          {{-- Center Component --}}
+
+          <div class="col-lg-7" onselectstart="return false">
+            <div class="">
+              <i class="far fa-heart"></i>
+              <i class="fas fa-step-backward"></i>
+              <i id="play" class="fas fa-play"></i>
+              <i id="pause" class="fas fa-pause"></i>
+              <i class="fas fa-step-forward"></i>
+              <i class="fas fa-redo"></i>
+              <audio id="music" preload="auto" loop="false" autoplay="false">
+              </audio>
+            </div>
+            <div class="mt-3">
+              <small class="start-time" id="timer">00:00</small>
+              <div id="slider"><div id="elapsed"></div></div>
+              <small id="end-time">0:00</small>
+            </div>
+          </div>
+
+          {{-- Right Component --}}
+
+          <div class="col-lg-2">
+            <svg x="0px" y="0px"
+               width="32px" height="32px" viewBox="0 0 45.793 45.793" fill="#0073CF">
+              <g>
+                <circle cx="22.899" cy="12.692" r="2.524"/>
+                <path d="M22.899,26.661c-2.893,0-5.245,2.354-5.245,5.245c0,2.893,2.353,5.244,5.245,5.244s5.246-2.353,5.246-5.244
+                  C28.145,29.016,25.791,26.661,22.899,26.661z"/>
+                <path d="M30.701,0H15.093c-4.647,0-8.415,3.768-8.415,8.414v28.965c0,4.646,3.768,8.414,8.415,8.414H30.7
+                  c4.647,0,8.415-3.768,8.415-8.414V8.414C39.116,3.768,35.348,0,30.701,0z M22.899,7.182c3.042,0,5.511,2.467,5.511,5.511
+                  c0,3.043-2.469,5.511-5.511,5.511c-3.044,0-5.511-2.468-5.511-5.511C17.388,9.648,19.855,7.182,22.899,7.182z M22.899,42.13
+                  c-5.646,0-10.223-4.577-10.223-10.224s4.576-10.223,10.223-10.223c5.646,0,10.223,4.577,10.223,10.223S28.544,42.13,22.899,42.13z
+                  "/>
+              </g>
+            </svg>
+            <progress value="0" max="1"></progress>
+
+          </div>
+
+
+        </div>
+      </footer>
+    @endauth
 
 
     {{-- <footer class="footer-section text-center">
@@ -161,12 +221,21 @@
     </footer> --}}
 
     <script src="/js/jquery-2.1.4.min.js"></script>
-    <script src="/js/divers.js">
-    </script>
+    <script src='/js/jquery.pjax.js'></script>
+    <script src="/js/toastr.min.js"></script>
+    {{-- <script type="text/javascript">
+      toastr.success('Have fun storming the castle!', 'Miracle Max Says')
+    </script> --}}
 
+
+    <script src="/js/divers.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/mixitup.min.js"></script>
     <script src="/js/magnific-popup.min.js"></script>
+
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"></script>
+
     {{-- <script src="/js/main.js"></script> --}}
 
     {{-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script> --}}

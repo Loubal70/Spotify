@@ -2,20 +2,43 @@
 
 @section('contenu')
 
-<h1>Nouvelle chanson</h1>
+
 
 {{-- <pre>{{print_r(Session::all())}}</pre> --}}
 
   @include('partials._errors')
 
-  <form action="/songs" method="post" enctype="multipart/form-data">
-    {{-- Permet de faire du post Obligatoire dans le from et en meta donnée--}}
-    @csrf
-    <input type="text" name="title" placeholder="Titre de la chanson" value="{{old('title')}}">
-    <br>
-    <input type="file" name="song" placeholder="URL de la chanson">
-    <br>
-    <input type="submit" name="submit" value="Envoyer">
-  </form>
+
+
+  <div class="card">
+      <div class="card-body">
+        <form action="/songs" method="post" enctype="multipart/form-data" data-pjax>
+          {{-- Permet de faire du post Obligatoire dans le from et en meta donnée--}}
+          @csrf
+          <h1>Nouvelle chanson</h1>
+          <div class="form-group row align-items-center">
+              <label for="title" class="col-md-4 col-form-label text-md-right text-white">Titre de la chanson :</label>
+              <div class="col-md-6">
+                <input type="text" name="title" class="form-control" placeholder="Exemple : Notice Me" value="{{old('title')}}">
+              </div>
+          </div>
+          <div class="form-group row align-items-center">
+            <label class="col-md-4 col-form-label text-md-right text-white" for="musique">Télécharger votre son :</label>
+            <div class="col-md-6">
+              <input type="file" name="song" class="form-control" id="musique" />
+            </div>
+          </div>
+          <div class="form-group row align-items-center">
+            <label class="col-md-4 col-form-label text-md-right text-white" for="image">Couverture Album :</label>
+            <div class="col-md-6">
+              <input type="file" name="image" class="form-control" id="image" />
+            </div>
+          </div>
+          <br>
+          <input type="submit" name="submit" class="btn btn-primary" value="Envoyer">
+        </form>
+
+      </div>
+  </div>
 
 @endsection

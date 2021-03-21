@@ -15,7 +15,7 @@
   @endif
 
 @auth
-  <h1>Musiques disponibles</h1>
+  <h1>{{ __('Musiques disponibles') }}</h1>
 
   @include('partials._songs', ["songs" => $songs])
 

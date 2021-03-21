@@ -36,3 +36,14 @@ Auth::routes();
 
 Route::get('/search/{search}', [FirstController::class, "search"]);
 Route::get('/test', [FirstController::class, "test"]);
+
+Route::get('/audio/{id}', [FirstController::class, "audio"])->where('id','[0-9]+')->middleware('auth');
+
+Route::get("/render/{id}/{file}", [firstController::class, "render"]);
+Route::post('/users/updatedescription', [FirstController::class, "updatedescription"]);
+
+// Playlist
+Route::get('/playlist/nouvelle', [FirstController::class, "nouvelleplaylist"])->middleware('auth');
+Route::post('/playlist/create', [FirstController::class, "creerplaylist"])->middleware('auth');
+Route::get('/infosplaylist/{id}', [FirstController::class, "infosplaylist"])->where ('id', '[0-9]+')->middleware('auth');
+Route::get('/playlist/update/{idplaylist}/{idchanson}', [FirstController::class, "ajoutplaylist"])->where ('idchanson', '[0-9]+')->middleware('auth');

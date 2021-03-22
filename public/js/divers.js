@@ -7,18 +7,37 @@
   //   let s = e.target.elements[0].value;
   //   window.location.href = '/search/'+ s;
   // })
-$('#search').submit(function (e) {
+
+  // &('a.flag-icon'){
+  //   e.preventDefault();
+  //   if($.support.pjax){
+  //     $.pjax({url: })
+  //   }
+  // }
+
+  $('#search').submit(function (e) {
     e.preventDefault();
-    if ($.support.pjax)
-        $.pjax({url: "/search/" + e.target.elements[0].value, container: '#pjax-container'});
-    else
-        window.location.href = "/search/" + e.target.elements[0].value;
+    var href = window.location.pathname.substr(0,4);
+
+    if (window.location.pathname.substr(4,6) === "search") {
+      if ($.support.pjax)
+        $.pjax({url: href + "search/" + e.target.elements[0].value, container: 'body'});
+      else
+        window.location.href = href + "search/" + e.target.elements[0].value;
+    }
+    else {
+      if ($.support.pjax)
+        $.pjax({url: href + "/search/" + e.target.elements[0].value, container: 'body'});
+      else
+        window.location.href = href + "/search/" + e.target.elements[0].value;
+    }
+
   });
 
-$(document).pjax('a:not(.song)', '#pjax-container');
-$(document).on('submit', 'form[data-pjax]', function(event) {
-  $.pjax.submit(event, '#pjax-container')
-})
+// $(document).pjax('a:not(.song)', '#pjax-container');
+// $(document).on('submit', 'form[data-pjax]', function(event) {
+//   $.pjax.submit(event, '#pjax-container')
+// })
 
 // Like animation
 $(".heart").on('click touchstart', function(){

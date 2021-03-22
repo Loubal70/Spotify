@@ -17,7 +17,7 @@
             @endisset
           </div>
           <div class="text">
-            <h6>Musique en cours :</h6>
+            <h6>{{ __('Musique en cours :') }}</h6>
             <span id="title"> </span>
           </div>
         </div>

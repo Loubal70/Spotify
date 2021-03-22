@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Route;
+
 class FirstController extends Controller
 {
   public function index(){
@@ -45,14 +47,14 @@ class FirstController extends Controller
     return view("firstcontroller.article", ["id" => $id]);
   }
 
-  public function user($id){
+  public function user($local, $id){
     $playlists = Playlist::all();  //SELECT * FROM playlist
     $user = User::findorFail($id);
 
     return view('firstcontroller.user', ["user" => $user, "playlists"=>$playlists]);
   }
 
-  public function search($search){
+  public function search($local, $search){
 
     // Select * from users WHERE name LIKE '$search%';
     $users = User::whereRaw("name LIKE CONCAT(?, '%')", [$search])->orderBy('id', 'desc')->get();

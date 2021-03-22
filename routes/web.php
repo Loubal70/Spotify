@@ -33,7 +33,6 @@ Route::group(['prefix' => '{language}'], function (){
 
   // MiddleWare : si tu n'arrives pas passer la porte connexion (condition d'accès)
   Route::get('/songs/create', [FirstController::class, "create"])->middleware('auth')->name('songs.create');
-  Route::post('/songs', [FirstController::class, "store"])->middleware('auth');;
 
   Route::get("/users/{id}", [FirstController::class, "user"])->where('id','[0-9]+')->name('users');
   Route::get('/changeLike/{id}', [FirstController::class, "changeLike"])->middleware('auth')->where('id','[0-9]+');
@@ -44,7 +43,7 @@ Route::group(['prefix' => '{language}'], function (){
   Route::get('/test', [FirstController::class, "test"]);
 
   Route::get('/audio/{id}', [FirstController::class, "audio"])->where('id','[0-9]+')->middleware('auth');
-  Route::post('/users/updatedescription', [FirstController::class, "updatedescription"]);
+
 
   // Playlist
   Route::get('/playlist/nouvelle', [FirstController::class, "nouvelleplaylist"])->middleware('auth');
@@ -57,3 +56,6 @@ Route::group(['prefix' => '{language}'], function (){
 
   // Route de recherche interne (pas besoin de traduction)
   Route::get("/render/{id}/{file}", [firstController::class, "render"]);
+  Route::post('/songs', [FirstController::class, "store"])->middleware('auth');;
+  Route::post('/users/updatedescription', [FirstController::class, "updatedescription"]);
+  Route::get('/like/{id}', [FirstController::class, "like"])->where ('id', '[0-9]+')->middleware('auth');

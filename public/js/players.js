@@ -71,6 +71,10 @@ $(document).ready(function (){
 
     // Set Img Chanson
     $('.imgBx').css("background-image", "url(" + $(this).attr('data-img') + ")");
+
+    // Set Id chanson
+      $('#heart').attr('href', '/like/'+ $(this).attr('data-id'));
+
   });
 
   $("#descriptionform button").fadeOut();

@@ -99,12 +99,14 @@
             <path d="M20.25 1.88635H3.75C2.50736 1.88635 1.5 2.89371 1.5 4.13635V20.6364C1.5 21.879 2.50736 22.8864 3.75 22.8864H10.1836V15.7468H7.23047V12.3864H10.1836V9.8251C10.1836 6.91182 11.918 5.3026 14.5744 5.3026C15.8466 5.3026 17.1769 5.52948 17.1769 5.52948V8.38885H15.7111C14.2669 8.38885 13.8164 9.2851 13.8164 10.2043V12.3864H17.0405L16.5248 15.7468H13.8164V22.8864H20.25C21.4926 22.8864 22.5 21.879 22.5 20.6364V4.13635C22.5 2.89371 21.4926 1.88635 20.25 1.88635V1.88635Z" fill="white"/>
           </svg>
 
-          <form method="get" action="/search/" id="search">
-            <div class="position-relative">
-              <input type="text" name="search" placeholder="{{ __('Recherche ta chanson')}}">
-              <input type="submit" value="">
-            </div>
-          </form>
+          @auth
+            <form method="get" action="/search/" id="search">
+              <div class="position-relative">
+                <input type="text" name="search" placeholder="{{ __('Recherche ta chanson')}}">
+                <input type="submit" value="">
+              </div>
+            </form>
+          @endauth
 
         </div>
         <div class="col-6 d-flex justify-content-end">

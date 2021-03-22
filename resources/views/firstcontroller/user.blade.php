@@ -56,12 +56,14 @@
         <div class="allplaylists">
           @foreach($playlists as $c)
             @if(Auth::user()->playlist->contains($c->id))
-                <div><a href="/infosplaylist/{{$c->id}}">
-                        <div class="listplaylist">
-                            <img class="img-fluid" src="{{$c->url_image}}" alt="Image de la playlist">
-                            <p>{{$c->nom}}</p>
-                        </div>
-                    </a></div>
+                <div>
+                  <a href="/infosplaylist/{{$c->id}}">
+                    <div class="listplaylist">
+                      <img class="img-fluid" src="{{$c->url_image}}" alt="Image de la playlist">
+                      <p>{{$c->nom}}</p>
+                    </div>
+                  </a>
+                </div>
             @endif
           @endforeach
           <div class="newplaylist">

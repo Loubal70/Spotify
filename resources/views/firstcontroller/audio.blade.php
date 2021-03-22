@@ -8,6 +8,7 @@
         <div class="col-lg-3">
           <div class="imgBx" style="background-image: url({{ isset($song) ? $song->image : '' }})">
             @isset($song)
+
               @if (Auth::user()->jeLike->contains($song->id)) {{-- Si chanson_id a été liké (présente dans la table like)--}}
 
                 <a class="heart animationend" id="heart" href="/like/{{$song->id}}"></a>

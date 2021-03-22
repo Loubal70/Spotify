@@ -110,7 +110,7 @@
 
         </div>
         <div class="col-6 d-flex justify-content-end">
-          <div class="{{ Route::currentRouteName() }}">
+          <div>
 
             @if (App::isLocale('fr'))
               <a href="{{ route('index', 'en') }}" class="flag-icon flag-icon-gb mr-3"></a>

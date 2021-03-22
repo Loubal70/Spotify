@@ -52,7 +52,7 @@
       </div>
       <div class="col-12 col-md-8">
         {{-- Album / Playlist --}}
-        <h5>Albums & Mixtapes</h5>
+        <h5>{{ __('Albums & Mixtapes') }}</h5>
         <div class="allplaylists">
           @foreach($playlists as $c)
             @if(Auth::user()->playlist->contains($c->id))
@@ -67,7 +67,7 @@
             @endif
           @endforeach
           <div class="newplaylist">
-            <a href="/playlist/nouvelle">Ajouter une nouvelle playlist</a>
+            <a href="{{ route('newplaylist', app()->getLocale()) }}">{{ __('Ajouter une nouvelle playlist') }}</a>
           </div>
         </div>
       </div>

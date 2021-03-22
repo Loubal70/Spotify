@@ -97,4 +97,25 @@ class FirstController extends Controller
     return back()->with('toastr', ["status"=>"success", "message"=> "Modification suivi"]);
   }
 
+  public function like($id){
+    Auth::user()->jeLike()->toggle($id);
+    return redirect('/');
+  }
+
+  public function elleEstLikee(){
+    return $this->belongsToMany("App\Models\Song", "like", "chanson_id", "user_id");
+  }
+
+  public function updatedescription(Request $request){
+    $description = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $request->input('description'));
+    Auth::user()->description = $description;
+    Auth::user()->save();
+    return back()->with('toastr', ["status"=>"success", "message"=> "Votre description a bien été modifiée !"]);
+  }
+
+  public function audio($id){
+    $song = Song::find($id);
+    return view('firstcontroller.audio', ['song' => $song]);
+  }
+
 }

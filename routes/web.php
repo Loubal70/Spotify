@@ -36,3 +36,8 @@ Auth::routes();
 
 Route::get('/search/{search}', [FirstController::class, "search"]);
 Route::get('/test', [FirstController::class, "test"]);
+
+Route::get('/audio/{id}', [FirstController::class, "audio"])->where('id','[0-9]+')->middleware('auth');
+
+Route::get('/like/{id}', [FirstController::class, "like"])->where ('id', '[0-9]+')->middleware('auth');
+Route::post('/users/updatedescription', [FirstController::class, "updatedescription"]);

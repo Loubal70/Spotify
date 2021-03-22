@@ -15,4 +15,8 @@ class Song extends Model
       return $this->belongsTo("App\Models\User", "user_id"); // Equivalent d'un SELECT * FROM users WHERE users.id = $this->user_id
     }
 
+    public function elleEstLikee(){
+        return $this->belongsToMany("App\Models\Songs", "like");
+    }
+
 }

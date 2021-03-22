@@ -34,7 +34,7 @@
 
   });
 
-$(document).pjax('a:not(.song)', 'body');
+$(document).pjax('a:not(.song)', '#pjax-container');
 $(document).on('submit', 'form[data-pjax]', function(event) {
   $.pjax.submit(event, 'body')
 })

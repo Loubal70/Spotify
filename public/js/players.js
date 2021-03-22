@@ -73,9 +73,27 @@ $(document).ready(function (){
     $('.imgBx').css("background-image", "url(" + $(this).attr('data-img') + ")");
 
     // Set Id chanson
+      $("#heart").addClass("heart");
+
+      $.get("/liked/"+$(this).attr("data-id"), function( data ) {
+            if(data == 1)
+                $("#heart").addClass("animationend");
+            else
+                $("#heart").removeClass("animationend");
+
+      });
+
+
       $('#heart').attr('href', '/like/'+ $(this).attr('data-id'));
 
   });
+
+  $("#heart").click(function(e) {
+      e.preventDefault();
+      $.get( $(this).attr("href"), function( data ) {
+          $("#heart").toggleClass("animationend")
+      });
+  })
 
   $("#descriptionform button").fadeOut();
   $("#description").on('input', function(e){

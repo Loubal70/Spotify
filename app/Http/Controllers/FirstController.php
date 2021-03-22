@@ -111,6 +111,10 @@ class FirstController extends Controller
     return redirect('/');
   }
 
+    public function liked($id){
+        return Auth::user()->jeLike->contains($id) ? 1 : 0;
+    }
+
   public function elleEstLikee(){
     return $this->belongsToMany("App\Models\Song", "like", "chanson_id", "user_id");
   }

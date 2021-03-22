@@ -59,3 +59,5 @@ Route::group(['prefix' => '{language}'], function (){
   Route::post('/songs', [FirstController::class, "store"])->middleware('auth');;
   Route::post('/users/updatedescription', [FirstController::class, "updatedescription"]);
   Route::get('/like/{id}', [FirstController::class, "like"])->where ('id', '[0-9]+')->middleware('auth');
+  Route::get('/liked/{id}', [FirstController::class, "liked"])->where ('id', '[0-9]+')->middleware('auth');
+

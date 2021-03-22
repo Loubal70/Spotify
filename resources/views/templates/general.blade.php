@@ -157,14 +157,14 @@
 
         @yield('contenu')
 
-        @auth
-          <div id="audiocontroller">
-            @include('firstcontroller.audio')
-          </div>
-        @endauth
+
 
       </div>
-
+        @auth
+            <div id="audiocontroller">
+                @include('firstcontroller.audio')
+            </div>
+        @endauth
 
     </div>
 

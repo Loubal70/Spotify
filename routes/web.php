@@ -46,7 +46,7 @@ Route::group(['prefix' => '{language}'], function (){
 
 
   // Playlist
-  Route::get('/playlist/nouvelle', [FirstController::class, "nouvelleplaylist"])->middleware('auth');
+  Route::get('/playlist/nouvelle', [FirstController::class, "nouvelleplaylist"])->middleware('auth')->name('newplaylist');
   Route::post('/playlist/create', [FirstController::class, "creerplaylist"])->middleware('auth');
   Route::get('/infosplaylist/{id}', [FirstController::class, "infosplaylist"])->where ('id', '[0-9]+')->middleware('auth');
   Route::get('/playlist/update/{idplaylist}/{idchanson}', [FirstController::class, "ajoutplaylist"])->where ('idchanson', '[0-9]+')->middleware('auth');

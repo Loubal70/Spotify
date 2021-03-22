@@ -47,14 +47,15 @@ class FirstController extends Controller
     return view("firstcontroller.article", ["id" => $id]);
   }
 
-  public function user($local, $id){
+  public function user($id){
+    // dd($id);
     $playlists = Playlist::all();  //SELECT * FROM playlist
     $user = User::findorFail($id);
 
     return view('firstcontroller.user', ["user" => $user, "playlists"=>$playlists]);
   }
 
-  public function search($local, $search){
+  public function search($search){
 
     // Select * from users WHERE name LIKE '$search%';
     $users = User::whereRaw("name LIKE CONCAT(?, '%')", [$search])->orderBy('id', 'desc')->get();

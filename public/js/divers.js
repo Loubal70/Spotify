@@ -34,10 +34,10 @@
 
   });
 
-// $(document).pjax('a:not(.song)', '#pjax-container');
-// $(document).on('submit', 'form[data-pjax]', function(event) {
-//   $.pjax.submit(event, '#pjax-container')
-// })
+$(document).pjax('a:not(.song)', 'body');
+$(document).on('submit', 'form[data-pjax]', function(event) {
+  $.pjax.submit(event, 'body')
+})
 
 // Like animation
 $(".heart").on('click touchstart', function(){

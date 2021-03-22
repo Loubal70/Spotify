@@ -111,17 +111,9 @@
           <div class="{{ Route::currentRouteName() }}">
 
             @if (App::isLocale('fr'))
-              @if (Route::currentRouteName())
-                <a href="{{ route(Route::currentRouteName(), 'en') }}" class="flag-icon flag-icon-gb mr-3"></a>
-                @else
-                  <a href="{{ route('index', 'en') }}" class="flag-icon flag-icon-gb mr-3"></a>
-              @endif
+              <a href="{{ route('index', 'en') }}" class="flag-icon flag-icon-gb mr-3"></a>
               @else
-                @if (Route::currentRouteName())
-                  <a href="{{ route(Route::currentRouteName(), 'fr') }}" class="flag-icon flag-icon-fr mr-3"></a>
-                  @else
-                    <a href="{{ route('index', 'fr') }}" class="flag-icon flag-icon-fr mr-3"></a>
-                @endif
+                <a href="{{ route('index', 'fr') }}" class="flag-icon flag-icon-fr mr-3"></a>
             @endif
           </div>
           <div>
@@ -132,7 +124,8 @@
             Drive in &#8594;
           </div>
             @else
-              <a href="/{{app()->getLocale()}}/users/{{ Auth::user()->id }}">{{ Auth::user()->name }}</a>
+              {{-- <a href="/{{app()->getLocale()}}/users/{{ Auth::user()->id }}">{{ Auth::user()->name }}</a> --}}
+              <a href="{{ route('users', ["language" => app()->getLocale(), "id" => Auth::user()->id]) }}">{{ Auth::user()->name }}</a>
               <a class="deconnexion" href="{{ route('logout', app()->getLocale()) }}"
                  onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">

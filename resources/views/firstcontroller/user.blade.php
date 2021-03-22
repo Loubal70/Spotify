@@ -10,7 +10,7 @@
       <div class="col-12 col-lg-8">
         {{-- Résumé --}}
           {{-- Description --}}
-          <h5>Résumé de {{$user->name}}</h5>
+          <h5>{{ __('Résumé de') }} {{$user->name}}</h5>
           <p>{{$user->name}} est suivis par {{$user->TheyLikeMe->count()}} personnes grâce à ses {{$user->songs->count()}} chansons publiées ! Il suit {{$user->ILikeThem->count()}} personnes</p>
           @if ($user->description)
             <p {{Auth::check() && Auth::id() == $user->id ? "contenteditable" : ""}} id="description">
@@ -57,17 +57,22 @@
           @foreach($playlists as $c)
             @if(Auth::user()->playlist->contains($c->id))
                 <div>
-                  <a href="/infosplaylist/{{$c->id}}">
+                  <a href="{{ route('infosplaylist', ["language" => app()->getLocale(), "id" => $c->id]) }}">
                     <div class="listplaylist">
-                      <img class="img-fluid" src="{{$c->url_image}}" alt="Image de la playlist">
                       <p>{{$c->nom}}</p>
+                      <img class="img-fluid" src="{{$c->url_image}}" alt="Image de la playlist">
                     </div>
                   </a>
                 </div>
             @endif
           @endforeach
           <div class="newplaylist">
-            <a href="{{ route('newplaylist', app()->getLocale()) }}">{{ __('Ajouter une nouvelle playlist') }}</a>
+            <a href="{{ route('newplaylist', app()->getLocale()) }}">
+              <div class="addplaylist">
+                <p>{{ __('Ajouter une nouvelle playlist') }}</p>
+                <div></div>
+              </div>
+            </a>
           </div>
         </div>
       </div>

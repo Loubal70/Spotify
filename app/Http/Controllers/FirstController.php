@@ -33,7 +33,7 @@ class FirstController extends Controller
     // $song->votes = 0;
     // $song->save();
 
-    $songs = Song::all();
+    $songs = Song::orderBy('votes', 'desc')->get(); // On affiche ceux qui ont le plus de votes
     $playlists = Playlist::all();
 
     return view("firstcontroller.index", ["songs" => $songs, "playlists"=>$playlists]);

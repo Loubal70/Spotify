@@ -240,7 +240,33 @@ tr td:nth-child(0n+2){
   display: block;
   padding: 10px;
 }
-
+.listplaylist {
+  background-color: var(--bg_gris_fonce);
+  padding: 10px 20px 20px 20px;
+  border-radius: 20px;
+  margin-right: 20px;
+}
+.listplaylist p, .addplaylist p{
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 26px;
+  text-align: center;
+}
+.listplaylist img{
+  height: 154px;
+  width: 154px;
+  border-radius: 10px;
+}
+.addplaylist div{
+  height: 154px;
+  width: 154px;
+  border-radius: 10px;
+  background-color: var(--bg_gris_clair);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* Audio Player */
 footer{

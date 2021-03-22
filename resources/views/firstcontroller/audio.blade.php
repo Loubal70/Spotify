@@ -27,7 +27,7 @@
 
         <div class="col-lg-7" onselectstart="return false">
           <div class="">
-            <i class="far fa-heart"></i>
+            <i class="fas fa-random"></i>
             <i id="previous" class="fas fa-step-backward"></i>
             <i id="play" class="fas fa-play"></i>
             <i id="pause" class="fas fa-pause"></i>
@@ -74,6 +74,4 @@
     </div>
 
   </footer>
-  <script src="/js/players.js">
-
-  </script>
+  <script src="/js/players.js"></script>

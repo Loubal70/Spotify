@@ -12,8 +12,8 @@
 
                         <h1>{{ __('Connexion') }}</h1>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-white text-md-right">{{ __('E-Mail Address') }}</label>
+                        <div class="form-group row align-items-center">
+                            <label for="email" class="col-md-4 col-form-label text-white text-md-right">{{ __('Adresse mail') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -26,8 +26,8 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-white text-md-right">{{ __('Password') }}</label>
+                        <div class="form-group row align-items-center">
+                            <label for="password" class="col-md-4 col-form-label text-white text-md-right">{{ __('Mot de passe') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -46,7 +46,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                        {{ __('Se souvenir de moi') }}
                                     </label>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
-                                    <a href="{{ route('register', app()->getLocale()) }}">{{ __('register') }}</a>
+                                    <a href="{{ route('register', app()->getLocale()) }}">{{ __("S'inscrire") }}</a>
                                 </div>
                             </div>
                         </div>

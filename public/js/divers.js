@@ -38,6 +38,42 @@ $(document).pjax('a:not(.song)', '#pjax-container');
 $(document).on('submit', 'form[data-pjax]', function(event) {
   $.pjax.submit(event, 'body')
 })
+const toggleButton = document.querySelector('.dark-light');
+
+toggleButton.addEventListener('click', () => {
+  document.body.classList.toggle('light-mode');
+});
+
+
+// Supprimer musique d'une playlist
+$('.boutonsuppr').click(function (e) {
+    e.preventDefault();
+    let id=$(this).attr('data-id');
+    let idplaylist=$(this).attr('data-idplaylist');
+    $.get( "/update/"+idplaylist+"/"+id, '', function(data) {
+        $('#suppr'+id).fadeOut();
+        $('#listfavor'+id).slideUp(300, function () {
+            $(this).remove();
+        });
+    });
+});
+
+$('.majplaylist').click(function (e) {
+   e.preventDefault();
+   let id=$(this).attr('data-id');
+   let idplaylist=$(this).attr('data-idplaylist');
+   let status = $(this).attr('data-status');
+   let clic=$(this);
+   $.get( "/update/"+idplaylist+"/"+id, '', function(data) {
+       $('#p'+idplaylist+'-'+id).toggleClass('danslaplaylist');
+       $('#check'+idplaylist+'-'+id).toggleClass('invisible');
+       if(status==='contient'){
+           clic.attr('data-status','necontientpas');
+       }else{
+           clic.attr('data-status','contient');
+       }
+   });
+});
 
 // Like animation
 $(".heart").on('click touchstart', function(){
@@ -46,8 +82,4 @@ $(".heart").on('click touchstart', function(){
 
 $(".heart").on('animationend', function(){
   $(this).toggleClass('animationend');
-});
-
-$(document).ready(function(){
-  $('[data-toggle="popover"]').popover({html:true});
 });

@@ -1,8 +1,11 @@
 {
   "Musiques disponibles": "Available music",
+  "S'inscrire": "Register",
+  "Se souvenir de moi": "Remember Me",
+  "Se connecter": "Log in",
   "Connexion": "Login",
   "Recherche": "Research",
-  "Utilisateurs" : "Users",
+  "Utilisateurs": "Users",
   "Chansons" : "Songs",
   "Le son comme vous ne l'avez jamais entendu": "Sound like you've never heard it",
   "Recherche ta chanson" : "Search your song",
@@ -25,5 +28,11 @@
   "Créer une playlist" : "Create a playlist",
   "Nom de la playlist": "Playlist name",
   "Titre de la playlist": "Write your best title to this beautiful playlist",
-  "Image de votre playlist": "Playlist cover"
+  "Image de votre playlist": "Playlist cover",
+  "Résumé de": "Summary of",
+  "Adresse mail": "E-Mail Address",
+  "Mot de passe": "Password",
+  "Confirmer le mdp": "Confirm Password",
+  "Ajouter à une nouvelle playlist": "Add to a new playlist",
+  "Connectez-vous pour ajouter cette chanson à une playlist": "Login to add this song to a playlist"
 }

@@ -149,7 +149,7 @@ class FirstController extends Controller
   public function nouvelleplaylist(){
     $playlists= Playlist::all();  // SELECT * FROM playlist
     $user= User::findOrFail(Auth::id());
-    return view("firstcontroller.addPlaylist", ["active" => "playlist","playlists"=>$playlists,"utilisateur"=>$user]);
+    return view("firstcontroller.addPlaylist", ["language" => app()->getLocale(),"active" => "playlist","playlists"=>$playlists,"utilisateur"=>$user]);
   }
 
   public function infosplaylist($id){
@@ -190,8 +190,9 @@ class FirstController extends Controller
     Playlist::findOrFail($idplaylist)->aLaChanson()->toggle($idchanson);
     $songs = Song::all();
     $playlists = Playlist::all();
+    return redirect('infosplaylist/'.$idplaylist)->with('toastr', ["status"=>"success", "message"=> "Votre changement a bien été effectué !"]);
 
-    return view("firstcontroller.index", ["songs" => $songs, "playlists"=>$playlists])->with('toastr', ["status"=>"success", "message"=> "Votre musique a bien été retirée !"]);
+    // return view("firstcontroller.index", ["language" => app()->getLocale(),"songs" => $songs, "playlists"=>$playlists])->with('toastr', ["status"=>"success", "message"=> "Votre musique a bien été retirée !"]);
   }
 
 }

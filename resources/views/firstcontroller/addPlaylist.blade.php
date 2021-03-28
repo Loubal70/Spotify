@@ -14,13 +14,13 @@
                   </ul>
               </div>
           @endif
-          <form action="/playlist/create" method="POST" enctype="multipart/form-data" data-pjax>
+          <form action="{{ route('playlistcreate', app()->getLocale()) }}" method="POST" enctype="multipart/form-data" data-pjax>
             <h1>{{ __('Créer une playlist') }}</h1>
               @csrf
               <div class="form-group row align-items-center">
                   <label for="nom" class="col-md-4 col-form-label text-md-right text-white">{{ __('Nom de la playlist') }} :</label>
                   <div class="col-md-6">
-                    <input type="text" name="nom" placeholder="{{ __('Titre de la playlist') }}" value="{{old('nom')}}" class="form-control " required>
+                    <input type="text" name="nom" placeholder="{{ __('Titre de la playlist') }}" value="{{old('nom')}}" class="form-control" required>
                   </div>
               </div>
               <div class="form-group row align-items-center">

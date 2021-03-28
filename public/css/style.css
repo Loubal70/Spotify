@@ -15,7 +15,25 @@
    --bg_gris_clair: #D3D3D3;
    --bg_gris_fonce: #282828;
 }
-
+.light-mode{
+  --text_white: black;
+  --text_foncé: #9C9C9C;
+  --text_blue: #0073CF;
+  --bg_button: #0073CF;
+  --bg_button_foncé: white;
+  --bg_button_clair: #C4C4C4;
+  --bg_gris_clair: #D3D3D3;
+  --bg_gris_fonce: white;
+}
+body.light-mode .col-form-label.text-white{
+  color: var(--text_white)!important;
+}
+body.light-mode .form-control{
+  background-color: #D8D8D8;
+}
+body.light-mode .connecter_link{
+  color: white;
+}
 body{
   background: linear-gradient(#020024, #090979);
   background-repeat: no-repeat;
@@ -23,6 +41,32 @@ body{
   font-family: "Poppins";
   color: var(--text_white);
   font-size: 20px;
+  transition: all 300ms ease-in-out;
+}
+body.light-mode{
+  background: linear-gradient(#090979, #0073CF);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: all 300ms ease-in-out;
+}
+
+.dark-light {
+  position: fixed;
+  bottom: 50px;
+  right: 30px;
+  background-color: var(--bg_button_foncé);
+  box-shadow: -1px 3px 8px -1px rgb(0 0 0 / 20%);
+  padding: 4px 10px 8px 10px;
+  border-radius: 50%;
+  z-index: 3;
+  cursor: pointer;
+}
+.dark-light svg {
+  width: 24px;
+  flex-shrink: 0;
+  fill: #ffce45;
+  stroke: #ffce45;
+  transition: 0.5s;
 }
 
 header .d-flex.justify-content-end div{
@@ -97,7 +141,7 @@ img.homepage{
   margin-left: 30px;
   padding: 8px 70px 8px 10px;
   box-shadow: 0 0 0 2px rgb(134 140 160 / 2%);
-  color: var(--text_white);
+  color: var(--bg_gris_fonce);
 }
 #search input[type=submit]{
   background-color: transparent;
@@ -240,7 +284,33 @@ tr td:nth-child(0n+2){
   display: block;
   padding: 10px;
 }
-
+.listplaylist {
+  background-color: var(--bg_gris_fonce);
+  padding: 10px 20px 20px 20px;
+  border-radius: 20px;
+  margin-right: 20px;
+}
+.listplaylist p, .addplaylist p{
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 26px;
+  text-align: center;
+}
+.listplaylist img{
+  height: 154px;
+  width: 154px;
+  border-radius: 10px;
+}
+.addplaylist div{
+  height: 154px;
+  width: 154px;
+  border-radius: 10px;
+  background-color: var(--bg_gris_clair);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* Audio Player */
 footer{
@@ -270,7 +340,7 @@ footer .imgBx{
 }
 footer .imgBx .heart{
   position: absolute;
-  background-color: #282828;
+  background-color: var(--bg_gris_fonce);
   padding: 10px;
   border-radius: 50%;
   bottom: -10px;

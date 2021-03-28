@@ -1,9 +1,9 @@
 <table>
   <thead>
     <tr>
-      <td>#</td>
+      <td class="text-white">#</td>
       <td></td>
-      <td>TITRE</td>
+      <td class="text-white">TITRE</td>
     </tr>
   </thead>
   <tbody>
@@ -44,13 +44,12 @@
                         @endif
                     @endif
                 @endforeach
-                  <a href="/playlist/nouvelle/{{$s->id}}"><p class="text-dark">Ajouter à une nouvelle playlist</p></a>'
+                  <a href="{{ route('newplaylist', ["language" => app()->getLocale(), "id" => $s->id]) }}"><p class="text-dark">{{ __('Ajouter à une nouvelle playlist') }}</p></a>
                 @endauth
                 @guest
-                    '<a href="/connexion" data-pjax><p>Connectez-vous pour ajouter cette chanson à une playlist</p></a>'
+                    '<a href="{{ route('login', app()->getLocale()) }}" data-pjax><p>{{ __('Connectez-vous pour ajouter cette chanson à une playlist') }}</p></a>'
                 @endguest
 
-              >
                 <i class="fas fa-plus"></i>
               </span>
 
@@ -67,7 +66,7 @@
 <script type="text/javascript">
 function addPlaylist(id, idplaylist){
    let clic=$(this);
-   $.get( "/playlist/update/"+idplaylist+"/"+id, '', function(data) {
+   $.get( "/update/"+idplaylist+"/"+id, '', function(data) {
        $('#p'+idplaylist+'-'+id).toggleClass('danslaplaylist');
        $('#check'+idplaylist+'-'+id).toggleClass('invisible');
        if(status==='contient'){

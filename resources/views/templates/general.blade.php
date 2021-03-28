@@ -120,14 +120,12 @@
           </div>
           <div>
             @guest
-              <a href="{{ route('login', app()->getLocale()) }}">Se connecter</a>
+              <a class="connecter_link" href="{{ route('login', app()->getLocale()) }}">{{ __('Se connecter') }}</a>
           </div>
-          <div class="btn btn-primary">
-            Drive in &#8594;
-          </div>
+          <a class="btn btn-primary" href="{{ route('register', app()->getLocale()) }}">{{ __("S'inscrire") }} &#8594;</a>
             @else
               {{-- <a href="/{{app()->getLocale()}}/users/{{ Auth::user()->id }}">{{ Auth::user()->name }}</a> --}}
-              <a href="{{ route('users', ["language" => app()->getLocale(), "id" => Auth::user()->id]) }}">{{ Auth::user()->name }}</a>
+              <a class="text-white" href="{{ route('users', ["language" => app()->getLocale(), "id" => Auth::user()->id]) }}">{{ Auth::user()->name }}</a>
               <a class="deconnexion" href="{{ route('logout', app()->getLocale()) }}"
                  onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">
@@ -154,6 +152,14 @@
             toastr.{{Session::get('toastr')['status']}}('{{Session::get('toastr')['message']}}')
           </script>
         @endif
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+          $('[data-toggle="popover"]').popover({html:true});
+        </script>
 
         @yield('contenu')
 
@@ -165,6 +171,11 @@
                 @include('firstcontroller.audio')
             </div>
         @endauth
+
+        <div class="dark-light">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg>
+        </div>
 
     </div>
 
@@ -183,8 +194,7 @@
     </script> --}}
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="/js/bootstrap.min.js"></script>
+
     <script src="/js/divers.js"></script>
     <script src="/js/mixitup.min.js"></script>
     <script src="/js/magnific-popup.min.js"></script>

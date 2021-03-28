@@ -4,8 +4,8 @@
   <div>
       <div>
           <div class="titre d-flex align-items-center">
-            <h2 class="mb-0">Musiques de : {{$playlist->nom}}</h2>
-            <a class="sup-playlist ml-3" data-idplaylist="{{$playlist->id}}"><i class="fas fa-trash-alt sup-playlist"></i></a>
+            <h2 class="mb-0 text-white">Musiques de : {{$playlist->nom}}</h2>
+            <a class="sup-playlist ml-3 text-white" data-idplaylist="{{$playlist->id}}"><i class="fas fa-trash-alt sup-playlist"></i></a>
           </div>
       </div>
 
@@ -13,9 +13,9 @@
   <table>
     <thead>
       <tr>
-        <td>#</td>
+        <td class="text-white">#</td>
         <td></td>
-        <td>TITRE</td>
+        <td class="text-white">TITRE</td>
       </tr>
     </thead>
     <tbody>
@@ -38,12 +38,12 @@
                 </a>
               </td>
               <td>
-                <a class="boutonsuppr" href="/playlist/update/{{$playlist->id}}/{{$c->id}}">x</a>
+                <a class="boutonsuppr" href="{{ route('playlistupdate', ["idplaylist" => $playlist->id, "idchanson" => $c->id]) }}" data-id="{{ $c->id }}" data-idplaylist="{{ $playlist->id }}">x</a>
               </td>
             @endif
         @endforeach
         @if ($nbchanson === 0)
-          <p>Votre playlist est vide pour le moment...</p>
+          <p class="text-white">Votre playlist est vide pour le moment...</p>
         @endif
 
       @endsection

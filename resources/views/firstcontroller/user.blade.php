@@ -10,14 +10,14 @@
       <div class="col-12 col-lg-8">
         {{-- Résumé --}}
           {{-- Description --}}
-          <h5>Résumé de {{$user->name}}</h5>
-          <p>{{$user->name}} est suivis par {{$user->TheyLikeMe->count()}} personnes grâce à ses {{$user->songs->count()}} chansons publiées ! Il suit {{$user->ILikeThem->count()}} personnes</p>
+          <h5 class="text-white">{{ __('Résumé de') }} {{$user->name}}</h5>
+          <p class="text-white">{{$user->name}} est suivis par {{$user->TheyLikeMe->count()}} personnes grâce à ses {{$user->songs->count()}} chansons publiées ! Il suit {{$user->ILikeThem->count()}} personnes</p>
           @if ($user->description)
-            <p {{Auth::check() && Auth::id() == $user->id ? "contenteditable" : ""}} id="description">
+            <p class="text-white" {{Auth::check() && Auth::id() == $user->id ? "contenteditable" : ""}} id="description">
               {!! $user->description !!}
             </p>
             @else
-              <p {{Auth::check() && Auth::id() == $user->id ? "contenteditable" : ""}} id="description">
+              <p class="text-white" {{Auth::check() && Auth::id() == $user->id ? "contenteditable" : ""}} id="description">
                 <i>Description par défault, merci de renseigner vos informations</i>
               </p>
           @endif
@@ -47,27 +47,32 @@
     <div class="row">
       <div class="col-12 col-md-4">
         {{-- Titres --}}
-        <h5>Les derniers titres</h5>
+        <h5 class="text-white">Les derniers titres</h5>
         @include('partials._songs', ['songs' => $user->songs])
       </div>
       <div class="col-12 col-md-8">
         {{-- Album / Playlist --}}
-        <h5>{{ __('Albums & Mixtapes') }}</h5>
+        <h5 class="text-white">{{ __('Albums & Mixtapes') }}</h5>
         <div class="allplaylists">
           @foreach($playlists as $c)
             @if(Auth::user()->playlist->contains($c->id))
                 <div>
-                  <a href="/infosplaylist/{{$c->id}}">
+                  <a href="{{ route('infosplaylist', ["language" => app()->getLocale(), "id" => $c->id]) }}">
                     <div class="listplaylist">
-                      <img class="img-fluid" src="{{$c->url_image}}" alt="Image de la playlist">
                       <p>{{$c->nom}}</p>
+                      <img class="img-fluid" src="{{$c->url_image}}" alt="Image de la playlist">
                     </div>
                   </a>
                 </div>
             @endif
           @endforeach
           <div class="newplaylist">
-            <a href="{{ route('newplaylist', app()->getLocale()) }}">{{ __('Ajouter une nouvelle playlist') }}</a>
+            <a href="{{ route('newplaylist', app()->getLocale()) }}">
+              <div class="addplaylist">
+                <p>{{ __('Ajouter une nouvelle playlist') }}</p>
+                <div></div>
+              </div>
+            </a>
           </div>
         </div>
       </div>

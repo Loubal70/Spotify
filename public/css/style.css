@@ -376,7 +376,7 @@ footer .col-lg-7 div{
   display: flex;
   align-items: center;
 }
-#play, #pause{
+#play, #pause, .fa-random.random, .fa-redo.repeat{
   background-color: rgba(0, 115, 207, 0.3);
   padding: 10px 10px 10px 13px;
   color: #0073CF;

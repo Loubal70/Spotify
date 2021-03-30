@@ -133,10 +133,17 @@ music.addEventListener("canplaythrough", function () {
 }, false);
 
 music.addEventListener('ended',function(){
-  current++;
-  console.log(current);
-  if(current == allsongs.length || current > allsongs.length)
-  current = 1;
+  if ($(music).hasClass('random')) {
+    current = Math.floor(Math.random() * (allsongs.length - 1) + 1);
+    console.log('Next Music : ' + current);
+  }
+  else {
+    current++;
+    console.log(current);
+    if(current == allsongs.length || current > allsongs.length)
+    current = 1;
+  }
+
   audio = $("#music")[0];
   audio.src = $("a.song[data-nb='"+ current +"']").attr("data-file");
   // Set Titre chanson
@@ -161,10 +168,12 @@ music.addEventListener('ended',function(){
 });
 
 document.getElementById("previous").addEventListener("click", function() {
+
   current--;
   // alert("Current :" + current + "\nAll songs :"+ allsongs.length);
   if(current == allsongs.length || current == 0)
   current = 1
+
   audio = $("#music")[0];
   audio.src = $("a.song[data-nb='"+current+"']").attr("data-file")
   // Set Titre chanson
@@ -184,10 +193,16 @@ document.getElementById("previous").addEventListener("click", function() {
 });
 
 document.getElementById("next").addEventListener("click", function() {
-  current++;
-  // alert("Current :" + current + "\nAll songs :"+ allsongs.length);
-  if(current == allsongs.length || current > allsongs.length)
-    current = 1
+  if ($(music).hasClass('random')) {
+    current = Math.floor(Math.random() * (allsongs.length - 1) + 1);
+    console.log('Next Music : ' + current);
+  }
+  else {
+    current++;
+    // alert("Current :" + current + "\nAll songs :"+ allsongs.length);
+    if(current == allsongs.length || current > allsongs.length)
+      current = 1
+  }
 
   audio = $("#music")[0];
   audio.src = $("a.song[data-nb='"+current+"']").attr("data-file")
@@ -217,7 +232,16 @@ $("#repeat").on('click', function(){
     music.loop = true;
   }
 
+  $('#repeat').toggleClass('repeat');
+
 });
+
+// Gestion Ramdom Musique
+$('#random').on('click', () => {
+  $(music).toggleClass('random');
+  $('#random').toggleClass('random');
+});
+
 
 //Gestion du volume dans le player
 var silence = false;
@@ -232,7 +256,6 @@ $('.volume').click(function (e) {
     silence = true;
   }
   $('.volume').toggleClass('fa-volume-up').toggleClass('fa-volume-mute');
-
 
   // if ($(music)[0].hasAttribute('muted')) {
   //   music.muted = false;

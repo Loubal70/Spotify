@@ -21,7 +21,7 @@
 
         <div class="col-lg-7" onselectstart="return false">
           <div class="">
-            <i class="fas fa-random"></i>
+            <i id="random" class="fas fa-random"></i>
             <i id="previous" class="fas fa-step-backward"></i>
             <i id="play" class="fas fa-play"></i>
             <i id="pause" class="fas fa-pause"></i>

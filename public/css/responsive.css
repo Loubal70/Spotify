@@ -1,3 +1,27 @@
+@media (max-width: 1200px) {
+    .container {
+      max-width: 97.5%; /*this gives it the precise width to match the Bootstrap defaults*/
+    }
+    .profil .imgBox {
+      max-width: 150px;
+      height: 150px;
+      min-height: 0;
+    }
+    footer .col-lg-3:first-child{
+      align-items: center;
+      margin-bottom: .5rem;
+    }
+    #search{
+      width: 100%;
+    }
+    #search input[type=text]{
+      margin-left: 0;
+    }
+    #search input[type=submit]{
+      right: 30px;
+    }
+}
+
 @media screen and (max-width: 992px){
   h1.header_title {
     font-size: 40px;
@@ -9,5 +33,58 @@
   }
   img.homepage{
     display: none;
+  }
+}
+@media screen and (max-width: 861px){
+  header.container .row{
+    flex-direction: column;
+  }
+  header.container .row .d-flex{
+    justify-content: center!important;
+  }
+  header.container .row .d-flex:nth-child(2){
+    margin-top: 1.3rem;
+  }
+}
+@media screen and (max-width: 430px){
+  header.container .row .d-flex:nth-child(2){
+    flex-direction: column;
+    text-align: center;
+  }
+  a.deconnexion{
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .allplaylists {
+    flex-wrap: wrap;
+  }
+  .allplaylists div{
+    display: block;
+    margin: 5px auto;
+  }
+
+  .profil .row{
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .profil .row > div{
+    width: 100%!important;
+  }
+
+  .profil .imgBox{
+    margin-right: 0;
+    max-width: 75px;
+    height: 75px;
+    margin: 0 auto;
+  }
+
+  .profil h5{
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  .profil p{
+    font-size: 1rem;
   }
 }

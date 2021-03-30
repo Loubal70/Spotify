@@ -34,5 +34,9 @@
   "Mot de passe": "Password",
   "Confirmer le mdp": "Confirm Password",
   "Ajouter à une nouvelle playlist": "Add to a new playlist",
-  "Connectez-vous pour ajouter cette chanson à une playlist": "Login to add this song to a playlist"
+  "Connectez-vous pour ajouter cette chanson à une playlist": "Login to add this song to a playlist",
+  "Dans quelle playlist va-t-on ajouter cette musique ?": "In which playlist will we add this music?",
+  "Fermer": "Close",
+  "Changement effectué avec succès": "Successful change",
+  "Connection": "Login"
 }

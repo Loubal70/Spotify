@@ -60,3 +60,4 @@ Route::group(['prefix' => '{language}'], function (){
   Route::get('/like/{id}', [FirstController::class, "like"])->where ('id', '[0-9]+')->middleware('auth');
   Route::get('/liked/{id}', [FirstController::class, "liked"])->where ('id', '[0-9]+')->middleware('auth');
   Route::get('/update/{idplaylist}/{idchanson}', [FirstController::class, "ajoutplaylist"])->where ('idchanson', '[0-9]+')->middleware('auth')->name('playlistupdate');
+  Route::get('/playlist/supprimer/{idplaylist}', [FirstController::class, "supprimerplaylist"])->where ('idplaylist', '[0-9]+')->middleware('auth');

@@ -4,10 +4,10 @@
 
   <div class="container-fluid profil">
     <div class="row justify-content-center justify-content-lg-start my-5">
-      <div class="col-12 col-lg-4 imgBox">
+      <div class="col-3 col-xl-4 imgBox">
         {{-- Photo de profil --}}
       </div>
-      <div class="col-12 col-lg-8">
+      <div class="col-9 col-xl-8">
         {{-- Résumé --}}
           {{-- Description --}}
           <h5 class="text-white">{{ __('Résumé de') }} {{$user->name}}</h5>
@@ -50,7 +50,7 @@
         <h5 class="text-white">Les derniers titres</h5>
         @include('partials._songs', ['songs' => $user->songs])
       </div>
-      <div class="col-12 col-md-8">
+      <div class="mt-3 mt-md-0 col-12 col-md-8">
         {{-- Album / Playlist --}}
         <h5 class="text-white">{{ __('Albums & Mixtapes') }}</h5>
         <div class="allplaylists">

@@ -25,6 +25,10 @@
   --bg_gris_clair: #D3D3D3;
   --bg_gris_fonce: white;
 }
+.modal-content{
+  background-color: var(--bg_gris_fonce);
+  color: var(--text-white);
+}
 body.light-mode .col-form-label.text-white{
   color: var(--text_white)!important;
 }
@@ -141,8 +145,8 @@ img.homepage{
   margin-left: 30px;
   padding: 8px 70px 8px 10px;
   box-shadow: 0 0 0 2px rgb(134 140 160 / 2%);
-  color: var(--bg_gris_fonce);
 }
+
 #search input[type=submit]{
   background-color: transparent;
   border: none;
@@ -301,6 +305,7 @@ tr td:nth-child(0n+2){
   height: 154px;
   width: 154px;
   border-radius: 10px;
+  object-fit: cover;
 }
 .addplaylist div{
   height: 154px;
@@ -335,6 +340,7 @@ footer .imgBx{
   height: 110px;
   background-color: var(--bg_gris_clair);
   background-size: cover;
+  background-position: center;
   border-radius: 20px;
   position: relative;
 }

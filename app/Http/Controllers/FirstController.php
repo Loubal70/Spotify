@@ -62,7 +62,9 @@ class FirstController extends Controller
 
     $songs = Song::whereRaw("title LIKE CONCAT('%', ?, '%')", [$search])->orderBy('votes', 'desc')->get();
 
-    return view('firstcontroller.search', ["search" => $search, "users" => $users, "songs" => $songs]);
+    $playlists = Playlist::whereRaw("title LIKE CONCAT('%', ?, '%')", [$search]);
+
+    return view('firstcontroller.search', ["search" => $search, "users" => $users, "songs" => $songs, "playlists" => $playlists]);
   }
 
 
@@ -182,7 +184,10 @@ class FirstController extends Controller
           $this->ajoutplaylist($idplaylist,$idchanson);
           return redirect('/infosplaylist/'.$idplaylist)->with('toastr', ["status"=>"success", "message"=> "Votre playlist a bien été créé"]);
       }else{
-          return redirect("/")->with('toastr', ["status"=>"success", "message"=> "Votre playlist a bien été créé"]);
+        $songs = Song::all();
+        $playlists = Playlist::all();
+
+        return view("firstcontroller.index", ["songs" => $songs, "playlists"=>$playlists])->with('toastr', ["status"=>"success", "message"=> "Votre playlist a bien été créé"]);
       }
   }
 
@@ -190,9 +195,23 @@ class FirstController extends Controller
     Playlist::findOrFail($idplaylist)->aLaChanson()->toggle($idchanson);
     $songs = Song::all();
     $playlists = Playlist::all();
-    return redirect('infosplaylist/'.$idplaylist)->with('toastr', ["status"=>"success", "message"=> "Votre changement a bien été effectué !"]);
+    // return redirect('infosplaylist/'.$idplaylist);
 
-    // return view("firstcontroller.index", ["language" => app()->getLocale(),"songs" => $songs, "playlists"=>$playlists])->with('toastr', ["status"=>"success", "message"=> "Votre musique a bien été retirée !"]);
+    return view("firstcontroller.index", ["language" => app()->getLocale(),"songs" => $songs, "playlists"=>$playlists])->with('toastr', ["status"=>"success", "message"=> "Votre musique a bien été retirée !"]);
+  }
+
+  public function supprimerplaylist($idplaylist){
+    $playlist = Playlist::findOrFail($idplaylist);
+    if ($playlist->user_id == Auth::id()){
+      $chanson = Song::all();
+      foreach ($chanson as $c){
+        if (Playlist::findOrFail($idplaylist)->aLaChanson->contains($c->id)){
+            Playlist::findOrFail($idplaylist)->aLaChanson()->toggle($c->id);
+        }
+      }
+
+      $playlist->delete();
+    }
   }
 
 }

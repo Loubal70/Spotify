@@ -25,7 +25,7 @@
         @foreach($chansons as $c)
             @if($playlist->aLaChanson->contains($c->id))
               @php
-                echo "<tr><td>".$nbchanson++."</td>";
+                echo "<tr id='suppr". $c->id ."'><td>".$nbchanson++."</td>";
               @endphp
               <td>
                 <a data-id="{{$c->id}}" data-nb='{{ $nbchanson }}' data-file ="/render/{{ $c->id }}/{{substr($c->url, 10)}}" data-titre="{{ $c->title }}" data-img="{{ $c->image }}" class="song">

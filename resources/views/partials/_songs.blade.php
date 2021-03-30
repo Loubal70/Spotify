@@ -25,32 +25,10 @@
                 </a>
               </td>
             <td>
-              <span
-                href="#"
-                data-toggle="popover"
-                title="Choisissez votre playlist :"
-                data-content=
-                @auth
-                @foreach($playlists as $p)
-                    @if(Auth::user()->playlist->contains($p->id))
-                        @if($p->aLaChanson->contains($s->id))
-                            '<a class="majplaylist" data-idplaylist="{{$p->id}}" data-id="{{$s->id}}" data-status="contient">
-                                <p id="p{{$p->id}}-{{$s->id}}" class="playlist_back danslaplaylist" data-idplaylist="{{$p->id}}" data-id="{{$s->id}}">{{$p->nom}}<i id="check{{$p->id}}-{{$s->id}}" class="fas fa-check"></i></p>
-                            </a>
-                        @else
-                            '<a href="#" onclick="addPlaylist({{$s->id}}, {{$p->id}});" data-idplaylist="{{$p->id}}" data-id="{{$s->id}}" data-status="necontientpas">
-                                <p id="p{{$p->id}}-{{$s->id}}" class="text-dark">{{$p->nom}}<i id="check{{$p->id}}-{{$s->id}}" class="fas fa-check invisible"></i></p>
-                            </a>
-                        @endif
-                    @endif
-                @endforeach
-                  <a href="{{ route('newplaylist', ["language" => app()->getLocale(), "id" => $s->id]) }}"><p class="text-dark">{{ __('Ajouter à une nouvelle playlist') }}</p></a>
-                @endauth
-                @guest
-                    '<a href="{{ route('login', app()->getLocale()) }}" data-pjax><p>{{ __('Connectez-vous pour ajouter cette chanson à une playlist') }}</p></a>'
-                @endguest
+              <span>
 
-                <i class="fas fa-plus"></i>
+
+                <i class="fas fa-plus" data-id="{{$s->id}}" data-bs-toggle="modal" data-bs-target="#modalPlaylist-{{$s->id}}"></i>
               </span>
 
             </td>
@@ -60,10 +38,45 @@
             ajouté par <a href="/users/{{ $s->user->id }}">{{ $s->user->name }}</a>
             aimé par {{$s->votes}} personnes</li> --}}
         </tr>
+        <!-- Modal -->
+        <div class="modal fade" id="modalPlaylist-{{$s->id}}" tabindex="-1" aria-labelledby="modalPlaylist" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ __('Dans quelle playlist va-t-on ajouter cette musique ?') }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                @auth
+                @foreach($playlists as $p)
+                    @if(Auth::user()->playlist->contains($p->id))
+                        @if($p->aLaChanson->contains($s->id))
+                            {{-- La musique est déjà dans le playlist --}}
+                        @else
+                            <a href="#" onclick="addPlaylist({{$s->id}}, {{$p->id}});" data-idplaylist="{{$p->id}}" data-id="{{$s->id}}" data-status="necontientpas">
+                                <p id="p{{$p->id}}-{{$s->id}}">{{$p->nom}}<i id="check{{$p->id}}-{{$s->id}}" class="fas fa-check invisible"></i></p>
+                            </a>
+                        @endif
+                    @endif
+                @endforeach
+                  <a href="{{ route('newplaylist', ["language" => app()->getLocale(), "id" => $s->id]) }}"><p>{{ __('Ajouter à une nouvelle playlist') }}</p></a>
+                @endauth
+                @guest
+                    <a href="{{ route('login', app()->getLocale()) }}" data-pjax><p>{{ __('Connectez-vous pour ajouter cette chanson à une playlist') }}</p></a>
+                @endguest
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __("Fermer") }}</button>
+              </div>
+            </div>
+          </div>
+        </div>
     @endforeach
   </tbody>
 </table>
+
 <script type="text/javascript">
+
 function addPlaylist(id, idplaylist){
    let clic=$(this);
    $.get( "/update/"+idplaylist+"/"+id, '', function(data) {
@@ -74,6 +87,7 @@ function addPlaylist(id, idplaylist){
        }else{
            clic.attr('data-status','contient');
        }
+       toastr.success("{{ __('Changement effectué avec succès') }}")
    });
 }
 </script>

@@ -1,15 +1,15 @@
 @extends('templates.general')
 
 @section('contenu')
-    <h1>{{ __('Recherche')}} {{$search}}</h1>
+    <h1 class="text-white">{{ __('Recherche')}} {{$search}}</h1>
 
-    <h4>{{ __('Utilisateurs')}}</h4>
+    <h4 class="text-white">{{ __('Utilisateurs')}}</h4>
 
     @foreach ($users as $u)
-      <a href="/search/{{$u->id}}">{{$u->name}}</a>
+      <a class="text-white" href="/search/{{$u->id}}">{{$u->name}}</a>
     @endforeach
 
-    <h4>{{ __('Chansons')}}</h4>
+    <h4 class="text-white">{{ __('Chansons')}}</h4>
     @include('partials._songs')
 
 

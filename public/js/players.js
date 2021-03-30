@@ -10,6 +10,12 @@ var endtime = document.getElementById("end-time");
 var duration;
 pauseButton.style.display = "none";
 
+if (typeof current === 'undefined') {
+    let current;
+}
+allsongs = $('a.song');
+allsongs.length = allsongs.length/2;
+
 function CalculVraiTemps(temps) {
   let minutes = Math.floor(temps / 60),
     seconds_int = temps - minutes * 60,
@@ -50,8 +56,7 @@ function timeUpdate() {
 	playhead.style.width = playPercent + "px";
 }
 
-// Modif DESCRIPTION
-$("#descriptionform button").hide();
+
 
 $(document).ready(function (){
   $("#pjax-container").on("click", "a.song", function (e){
@@ -59,12 +64,12 @@ $(document).ready(function (){
     var audio = $("#music")[0];
     audio.setAttribute('src', $(this).attr('data-file'));
     console.log(audio.src);
-    // $.get( "/audio/"+ $(this).attr('data-id'), function( data ) {
-    //   $( "#audiocontroller" ).html( data );
-    // });
-  	music.play();
+
+    music.play();
     playButton.style.display = "none";
     pauseButton.style.display = "inherit";
+
+    current = $(this).attr('data-nb');
 
 		// Set Titre chanson
 		document.getElementById("title").innerHTML = $(this).attr('data-titre');
@@ -93,26 +98,6 @@ $(document).ready(function (){
       $.get( $(this).attr("href"), function( data ) {
           $("#heart").toggleClass("animationend")
       });
-  })
-
-  $("#descriptionform button").fadeOut();
-  $("#description").on('input', function(e){
-    $("#descriptionform button").fadeIn();
-  });
-
-  $("#descriptionform").submit(function(e){
-    e.target.elements['description'].value = $('#description').html();
-    $("#descriptionform button").fadeOut();
-
-    // console.log($('#description').html());
-  })
-
-  $('#description').keydown(function(e){
-    if (e.keyCode === 13) {
-      // Condition : Appuyer sur la touche Entrée
-      document.execCommand('insertHTML', false, '<br><br>');
-      return false;
-    }
   })
 
   // $("#pjax-container").on("click", "a.song", function (e){
@@ -147,6 +132,82 @@ music.addEventListener("canplaythrough", function () {
 	duration = music.duration;
 }, false);
 
+music.addEventListener('ended',function(){
+  current++;
+  console.log(current);
+  if(current == allsongs.length || current > allsongs.length)
+  current = 1;
+  audio = $("#music")[0];
+  audio.src = $("a.song[data-nb='"+ current +"']").attr("data-file");
+  // Set Titre chanson
+  document.getElementById("title").innerHTML = $("a.song[data-nb='"+ current +"']").attr('data-titre');
+  // Set Img Chanson
+  $('.imgBx').css("background-image", "url(" + $("a.song[data-nb='"+ current +"']").attr('data-img') + ")");
+  // Set Id chanson
+  $("#heart").addClass("heart");
+
+  $.get("/liked/"+$("a.song[data-nb='"+ current +"']").attr("data-id"), function( data ) {
+        if(data == 1)
+            $("#heart").addClass("animationend");
+        else
+            $("#heart").removeClass("animationend");
+
+  });
+
+
+  $('#heart').attr('href', '/like/'+ $("a.song[data-nb='"+ current +"']").attr('data-id'));
+
+  music.play()
+});
+
+document.getElementById("previous").addEventListener("click", function() {
+  current--;
+  // alert("Current :" + current + "\nAll songs :"+ allsongs.length);
+  if(current == allsongs.length || current == 0)
+  current = 1
+  audio = $("#music")[0];
+  audio.src = $("a.song[data-nb='"+current+"']").attr("data-file")
+  // Set Titre chanson
+  document.getElementById("title").innerHTML = $("a.song[data-nb='"+ current +"']").attr('data-titre');
+  // Set Img Chanson
+  $('.imgBx').css("background-image", "url(" + $("a.song[data-nb='"+ current +"']").attr('data-img') + ")");
+  // Set Id chanson
+  $.get("/liked/"+$("a.song[data-nb='"+ current +"']").attr("data-id"), function( data ) {
+        if(data == 1)
+            $("#heart").addClass("animationend");
+        else
+            $("#heart").removeClass("animationend");
+
+  });
+  $('#heart').attr('href', '/like/'+ $("a.song[data-nb='"+ current +"']").attr('data-id'));
+  music.play()
+});
+
+document.getElementById("next").addEventListener("click", function() {
+  current++;
+  // alert("Current :" + current + "\nAll songs :"+ allsongs.length);
+  if(current == allsongs.length || current > allsongs.length)
+    current = 1
+
+  audio = $("#music")[0];
+  audio.src = $("a.song[data-nb='"+current+"']").attr("data-file")
+  // Set Titre chanson
+  document.getElementById("title").innerHTML = $("a.song[data-nb='"+ current +"']").attr('data-titre');
+  // Set Img Chanson
+  $('.imgBx').css("background-image", "url(" + $("a.song[data-nb='"+ current +"']").attr('data-img') + ")");
+  // Set Id chanson
+  $.get("/liked/"+$("a.song[data-nb='"+ current +"']").attr("data-id"), function( data ) {
+        if(data == 1)
+            $("#heart").addClass("animationend");
+        else
+            $("#heart").removeClass("animationend");
+
+  });
+  $('#heart').attr('href', '/like/'+ $("a.song[data-nb='"+ current +"']").attr('data-id'));
+  music.play()
+});
+
+
 $("#repeat").on('click', function(){
 
   if ($(music)[0].hasAttribute("loop")) {
@@ -158,10 +219,46 @@ $("#repeat").on('click', function(){
 
 });
 
+//Gestion du volume dans le player
+var silence = false;
+$('.volume').click(function (e) {
+  if (silence == true) {
+    music.muted = false;
+    silence = false;
+
+  }
+  else {
+    music.muted = true;
+    silence = true;
+  }
+  $('.volume').toggleClass('fa-volume-up').toggleClass('fa-volume-mute');
+
+
+  // if ($(music)[0].hasAttribute('muted')) {
+  //   music.muted = false;
+  //   $('.volume').removeClass('fa-volume-up');
+  //   $('.volume').addClass('fa-volume-mute');
+  // }
+  // else {
+  //   music.muted = true;
+  // }
+});
+
+
 slider.addEventListener("click", seek);
 function seek(evt) {
   let percent = evt.offsetX / this.offsetWidth;
   music.currentTime = percent * music.duration;
   music.value = percent / 100 ;
 	// console.log(percent);
+}
+
+// Responsive JS
+
+if ( $(document).width() < 992 ) {
+  $('#audio .container-fluid').on('click', () => {
+    $("#audio .container-fluid").toggleClass('mobile');
+    $('#audio .container-fluid .col-lg-3').fadeToggle('slow');
+    $('#audio .container-fluid .col-lg-2').fadeToggle('slow');
+  });
 }

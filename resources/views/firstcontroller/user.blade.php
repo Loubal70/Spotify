@@ -34,7 +34,7 @@
               {{-- Est-ce que je suis cette personne --}}
               @if (Auth::user()->ILikeThem->contains($user->id))
                 {{-- Je suis cette personne --}}
-                <a  class="btn btn-primary" href="/changeLike/{{$user->id}}">Vous suivez déjà cette personne</a>
+                <a  class="btn btn-primary" href="{{ route('changeLike', ["language" => app()->getLocale(), "id" => $user->id]) }}">Vous suivez déjà cette personne</a>
 
                 @else
                   {{-- Non, je ne suis pas cette personne --}}

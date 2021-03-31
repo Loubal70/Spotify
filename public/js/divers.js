@@ -31,11 +31,11 @@ $('#search').submit(function(e) {
     } else {
         if ($.support.pjax)
             $.pjax({
-                url: href + "search/" + e.target.elements[0].value,
+                url: href + "/search/" + e.target.elements[0].value,
                 container: '#pjax-container'
             });
         else
-            window.location.href = href + "search/" + e.target.elements[0].value;
+            window.location.href = href + "/search/" + e.target.elements[0].value;
     }
 
 });

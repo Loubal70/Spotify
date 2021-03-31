@@ -35,11 +35,11 @@ Route::group(['prefix' => '{language}'], function (){
   Route::get('/songs/create', [FirstController::class, "create"])->middleware('auth')->name('songs.create');
 
   Route::get("/users/{id}", [FirstController::class, "user"])->where('id','[0-9]+')->name('users');
-  Route::get('/changeLike/{id}', [FirstController::class, "changeLike"])->middleware('auth')->where('id','[0-9]+');
+  Route::get('/changeLike/{id}', [FirstController::class, "changeLike"])->middleware('auth')->where('id','[0-9]+')->name('changeLike');
 
   Auth::routes();
 
-  Route::get('/search/{search}', [FirstController::class, "search"]);
+  Route::get('/search/{search}', [FirstController::class, "search"])->name('search');
   Route::get('/test', [FirstController::class, "test"]);
 
   Route::get('/audio/{id}', [FirstController::class, "audio"])->where('id','[0-9]+')->middleware('auth');

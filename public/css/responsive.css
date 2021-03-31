@@ -87,4 +87,8 @@
   .profil p{
     font-size: 1rem;
   }
+  #audio .col-lg-2{
+    text-align: center;
+    margin: 10px auto;
+  }
 }
